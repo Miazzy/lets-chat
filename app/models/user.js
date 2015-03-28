@@ -104,7 +104,7 @@ var UserSchema = new mongoose.Schema({
 });
 
 UserSchema.virtual('local').get(function() {
-    return this.provider === 'local';
+    return this.provider === 'local' || this.provider === 'token';
 });
 
 UserSchema.virtual('avatar').get(function() {
@@ -239,7 +239,7 @@ UserSchema.statics.authenticate = function(identifier, password, cb) {
             return cb(null, null, 0);
         }
         // Is this a local user?
-        if (user.provider !== 'local') {
+        if (user.provider !== 'local' && user.provider !== 'token') {
             return cb(null, null, 0);
         }
 

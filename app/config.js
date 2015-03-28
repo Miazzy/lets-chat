@@ -85,7 +85,7 @@ var pipeline = [
 
     function getAuthPluginDefaults(context) {
         _.each(context.plugins.auth, function(key) {
-            if (key === 'local') {
+            if (key === 'local' || key === 'token') {
                 return;
             }
 

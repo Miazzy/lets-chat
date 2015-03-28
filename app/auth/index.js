@@ -20,7 +20,9 @@ function getProviders(core) {
     return settings.auth.providers.map(function(key) {
         var Provider;
 
-        if (key === 'local') {
+        if (key === 'token') {
+            Provider = require('./sandstorm');
+        } else if (key === 'local') {
             Provider = require('./local');
         } else {
             Provider = plugins.getPlugin(key, 'auth');

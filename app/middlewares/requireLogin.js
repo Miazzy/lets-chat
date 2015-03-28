@@ -13,6 +13,8 @@ function getMiddleware(fail) {
             return;
         }
 
+        auth = passport.authenticate('token');
+        return auth(req, res, next);
         if (req.headers && req.headers.authorization) {
             var parts = req.headers.authorization.split(' ');
             if (parts.length === 2) {
