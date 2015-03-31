@@ -22,47 +22,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-6"><$ __('Email') $></label>
-                        <div class="col-sm-11">
-                            <input type="text" name="email" required
-                                class="required email form-control"
-                                value="<$ account.email $>" />
-                        </div>
-                    </div>
-                    <% if account.local %>
-                        <div class="form-group">
-                            <label class="control-label col-sm-6">
-                                <$ __('New Password') $>
-                            </label>
-                            <div class="col-sm-11">
-                                <input type="password" name="new-password"
-                                    class="form-control"
-                                    minlength="4" maxlength="64" autocomplete="off"
-                                    data-clear="true" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-6">
-                                <$ __('Confirm New Password') $>
-                            </label>
-                            <div class="col-sm-11">
-                                <input type="password" name="confirm-password"
-                                class="form-control"
-                                minlength="4" maxlength="64" autocomplete="off"/>
-                            </div>
-                        </div>
-                    <% endif %>
-                    <div class="form-group">
-                        <label class="control-label col-sm-6">
-                            <$ __('Current Password') $> <small><$ __('Required') $></small>
-                        </label>
-                        <div class="col-sm-11">
-                            <input type="password" name="current-password"
-                            class="form-control"
-                            minlength="4" maxlength="64" required autocomplete="off"/>
-                        </div>
-                    </div>
                     <p class="alert response" style="display: none;"></p>
                 </div>
                 <div class="modal-footer">
