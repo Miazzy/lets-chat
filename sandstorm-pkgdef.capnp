@@ -21,6 +21,8 @@ const pkgdef :Spk.PackageDefinition = (
 
     appVersion = 0,  # Increment this for every release.
 
+    appMarketingVersion = (defaultText = "0.1.0"),
+
     actions = [
       # Define your "new document" handlers here.
       ( title = (defaultText = "New Let's Chat"),
