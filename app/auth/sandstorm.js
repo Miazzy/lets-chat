@@ -10,7 +10,11 @@ function Local(options) {
 
 Local.key = 'token';
 
-var createUser = function (username, token, done) {
+// This is a hack to deal with emails needing to have a domain
+var EMAIL_DOMAIN = '@sandstorm.grain';
+
+var createUser = function (username, token, done, loopCount) {
+    loopCount = loopCount || 1;
     var app = this.app,
         core = this.core;
 
@@ -21,10 +25,15 @@ var createUser = function (username, token, done) {
         firstName = username.slice(0, spaceIndex);
         lastName = username.slice(spaceIndex + 1);
     }
+
+    var newUserName = username.replace(/ /g, '_');
+    if (loopCount !== 1) {
+        newUserName += loopCount;
+    }
     var data = {
         provider: 'token',
-        username: token,
-        email: token + '@example.com',
+        username: newUserName,
+        email: token + EMAIL_DOMAIN,
         password: token,
         firstName: firstName,
         lastName: lastName,
@@ -39,6 +48,9 @@ var createUser = function (username, token, done) {
 
     user.save(function(err, user) {
         if (err) {
+            if (err.errors && err.errors.username && err.errors.username.type) {
+                return createUser(username, token, done, loopCount + 1);
+            }
             console.log('Failed to create user', err);
             var message = 'Sorry, we could not process your request';
             // User already exists
@@ -74,7 +86,7 @@ Local.prototype.setup = function() {
         username = decodeURIComponent(username);
         token = decodeURIComponent(token);
         var User = mongoose.model('User');
-        User.authenticate(token, token, function(err, user) {
+        User.authenticate(token + EMAIL_DOMAIN, token, function(err, user) {
             if (err) {
                 createUser(username, token, done);
             }
