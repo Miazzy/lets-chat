@@ -34,7 +34,7 @@ var UserSchema = new mongoose.Schema({
         required: true,
         trim: true,
         lowercase: true,
-        unique: true,
+        unique: false,
         validate: [ validate.email, 'invalid email address' ]
     },
     password: {

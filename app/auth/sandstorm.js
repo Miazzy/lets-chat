@@ -26,7 +26,7 @@ var createUser = function (username, token, done, loopCount) {
         lastName = username.slice(spaceIndex + 1);
     }
 
-    var newUserName = username.replace(/ /g, '_');
+    var newUserName = username.replace(/[^\w\-\.]/g, '_');
     if (loopCount !== 1) {
         newUserName += loopCount;
     }
@@ -48,7 +48,7 @@ var createUser = function (username, token, done, loopCount) {
 
     user.save(function(err, user) {
         if (err) {
-            if (err.errors && err.errors.username && err.errors.username.type) {
+            if (err.errors && err.errors.username && err.errors.username.message == "Expected username to be unique") {
                 return createUser(username, token, done, loopCount + 1);
             }
             console.log('Failed to create user', err);
