@@ -19,7 +19,7 @@ const pkgdef :Spk.PackageDefinition = (
 
     appTitle = (defaultText = "Let's Chat"),
 
-    appVersion = 6,  # Increment this for every release.
+    appVersion = 7,  # Increment this for every release.
 
     appMarketingVersion = (defaultText = "0.4.1"),
 
