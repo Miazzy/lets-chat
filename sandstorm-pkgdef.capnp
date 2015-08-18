@@ -19,24 +19,62 @@ const pkgdef :Spk.PackageDefinition = (
 
     appTitle = (defaultText = "Let's Chat"),
 
-    appVersion = 7,  # Increment this for every release.
+    appVersion = 8,  # Increment this for every release.
 
-    appMarketingVersion = (defaultText = "0.4.1"),
+    appMarketingVersion = (defaultText = "0.4.2"),
 
     actions = [
       # Define your "new document" handlers here.
       ( title = (defaultText = "New Let's Chat"),
+        nounPhrase = (defaultText = "chatroom"),
         command = .myCommand
         # The command to run when starting for the first time. (".myCommand"
         # is just a constant defined at the bottom of the file.)
       )
     ],
 
-    continueCommand = .myCommand
+    continueCommand = .myCommand,
     # This is the command called to start your app back up after it has been
     # shut down for inactivity. Here we're using the same command as for
     # starting a new instance, but you could use different commands for each
     # case.
+
+    metadata = (
+      icons = (
+        appGrid = (png = (
+          dpi1x = embed "app-graphics/letschat-128.png",
+          dpi2x = embed "app-graphics/letschat-256.png"
+        )),
+        grain = (png = (
+          dpi1x = embed "app-graphics/letschat-24.png",
+          dpi2x = embed "app-graphics/letschat-48.png"
+        )),
+        market =  (png = (
+          dpi1x = embed "app-graphics/letschat-150.png",
+          dpi2x = embed "app-graphics/letschat-300.png"
+        )),
+      ),
+
+      website = "https://sdelements.github.io/lets-chat/",
+      codeUrl = "https://github.com/jparyani/lets-chat",
+      license = (openSource = mit),
+      categories = [office, productivity],
+
+      author = (
+        contactEmail = "jparyani@sandstorm.io",
+        pgpSignature = embed "pgp-signature",
+        upstreamAuthor = "Security Compass",
+      ),
+      pgpKeyring = embed "pgp-keyring",
+
+      description = (defaultText = embed "description.md"),
+
+      screenshots = [
+        (width = 438, height = 251, png = embed "sandstorm-screenshot.png")
+      ],
+
+      changeLog = (defaultText = embed "CHANGELOG.md"),
+    ),
   ),
 
   sourceMap = (
